@@ -1,0 +1,132 @@
+<style>
+    .dropbtn {
+        /* background-color: #4CAF50; */
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    .dropdown:hover .dropbtn {
+        /* background-color: #3e8e41; */
+    }
+</style>
+<div class="sidenav-container" fxLayout="column">
+
+    <md-toolbar color="primary" class="sidenav-toolbar mat-elevation-z2">
+        <div fxLayout="row" style="width: 100%;">
+            <!-- <span style="width: 22px; text-align: center; margin-left: -3px;" fxFlexAlign="center"><img src="assets/img/icon.png" style="width: 25px; vertical-align: text-top;"></span> -->
+            <img style="height: 35px; margin-left: 24px; margin-bottom: -5px;" src="assets/img/ION-Logo-200x60.png" fxFlexAlign="center" class="fade-in-on-icon-sidenav">
+            <span fxFlex><!-- fill space --></span>
+            <!-- <div fxHide="true" fxHide.gt-sm="false" fxFlexAlign="center">
+                <button md-icon-button (click)="toggleIconSidenav()">
+        </button>
+            </div> -->
+        </div>
+    </md-toolbar>
+
+
+
+    <div class="sidenav-scrollbar-container" fxLayout="column">
+
+        <a style="text-decoration:none;padding: 10px;" class="active" [routerLink]="['/dashboard']">
+            <p style="text-align:center; ">
+                <img src="assets/img/Content new.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Content</span>
+            </p>
+        </a>
+        <!-- <a style="text-decoration:none;padding: 10px;" [routerLink]="['/visits']" class="active">
+            <p style="text-align:center; ">
+                <img src="assets/img/Visits.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Visits</span>
+            </p>
+        </a> -->
+        <a style="text-decoration:none;" class="active dropdown">
+
+            <p style="text-align:center;outline:none;" class="dropbtn" [routerLink]="['/visits']">
+                <img src="assets/img/Visits.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Visits</span>
+            </p>
+            <div class="dropdown-content">
+                <a [routerLink]="['/add_visit']">Add a Visit</a>
+            </div>
+        </a>
+        <a style="text-decoration:none;padding: 10px;" [routerLink]="['/queries']" class="active">
+            <p style="text-align:center;">
+                <img src="assets/img/Queries.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Queries</span>
+            </p>
+        </a>
+        <!-- <a style="text-decoration:none;padding: 10px;" [routerLink]="['/editor']" class="active">
+            <p style="text-align:center;">
+                <img src="assets/img/Leads.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Leads</span>
+            </p>
+        </a> -->
+        <a style="text-decoration:none;" class="active dropdown">
+
+            <p style="text-align:center;outline:none;" class="dropbtn" [routerLink]="['/leads']">
+                <img src="assets/img/Leads.png" alt="" style="width:60px;height:60px;outline:none;">
+                <br>
+                <span style="color:white;text-align:center;">Leads</span>
+            </p>
+            <div class="dropdown-content">
+                <a [routerLink]="['/editor']">Add a Lead</a>
+            </div>
+        </a>
+
+
+
+
+        <!-- <md-nav-list [perfect-scrollbar] fxLayout="column" class="sidenav-list sidenav-toplevel">
+            <ms-sidenav-item *ngFor="let item of items" [item]="item"></ms-sidenav-item>
+        </md-nav-list> -->
+    </div>
+
+    <style>
+        a:focus {
+            padding: 10px;
+            background-color: #272b35;
+        }
+        
+        a:hover {
+            background-color: #272b35;
+        }
+    </style>
+
+</div>

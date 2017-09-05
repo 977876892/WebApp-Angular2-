@@ -1,0 +1,34 @@
+<div>
+
+    <div *ngFor="let booking of visits">
+        <div class="text-center">
+            <span class="visitsDateStyling" style="font-size:13px">{{booking[0]}} <b>({{booking[1].length}})</b></span>
+        </div>
+        <md-list>
+
+            <md-list-item *ngFor="let book of booking[1]" style="border: 1px solid #999;margin-bottom: 13px;" (click)="editDialog(book)">
+                <img md-list-avatar src="{{book.image}}" class="visitsImage">
+                <h3>{{book.name}}</h3><br/>
+                <p>{{book.sex}}</p>
+                <button>{{book.display_starttime}}</button>
+            </md-list-item>
+        </md-list>
+    </div>
+    <style>
+        .visitsImage img {
+            height: 40px;
+            width: 40px;
+            border-radius: 40px;
+            margin-top: 0;
+            margin-left: -7px;
+        }
+    </style>
+    <!-- <modal #modal>
+    <modal-header [show-close]="true">
+        <h4 class="modal-title">I'm a modal!</h4>
+    </modal-header>
+    <modal-body>
+        Hello World!
+    </modal-body>
+    <modal-footer [show-default-buttons]="true"></modal-footer>
+</modal> -->

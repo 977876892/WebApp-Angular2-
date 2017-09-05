@@ -1,0 +1,148 @@
+<!-- <div class="container" style="width:100%;">
+    <div fxLayout="column" fxLayout.gt-md="row">
+        <input type="file" (change)="fileEvent($event)">
+
+        <label>
+          <input type="radio" [(ngModel)]="model.sele"  value="doctor" title="Doctor"> Doctor
+          <input type="radio" [(ngModel)]="model.sele"  value="patient" title="Patient"> Patient
+          <input type="radio" [(ngModel)]="model.sele"  value="others" title="Others"> Others
+        </label>
+    </div>
+
+
+
+    <div fxLayout="column" fxLayout.gt-md="row">
+        <md-input-container fxFlex>
+            <input mdInput placeholder="First Name" [(ngModel)]="model.fname" required>
+        </md-input-container>
+
+        <md-input-container fxFlex>
+            <input mdInput placeholder="Last Name" [(ngModel)]="model.lname">
+        </md-input-container>
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row">
+        <md-select placeholder="Select Gender" [(ngModel)]="model.gender">
+            <md-option value="male" name="item">Male</md-option>
+            <md-option value="female" name="item">Female</md-option>
+        </md-select>
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Telephone" [(ngModel)]="model.number">
+        </md-input-container>
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row">
+        <md-input-container fxFlex>
+            <input mdInput placeholder="Email" type="email" required [(ngModel)]="model.email">
+        </md-input-container>
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row"> -->
+<!-- <md-input-container class="example-full-width">
+            <input mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker" [(ngModel)]="model.date" placeholder="Date Of Birth">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker></md-datepicker> -->
+
+<!-- <md-input-container class="example-full-width">
+            <input mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker" [(ngModel)]="model.dateofbirth" placeholder="Date Of Birth">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker></md-datepicker>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-md="row">
+
+        <md-input-container fxFlex>
+            <input mdInput placeholder="City" [(ngModel)]="model.city">
+            <span md-prefix><md-icon>location_city</md-icon></span>
+        </md-input-container>
+        <md-input-container fxFlex>
+            <input mdInput placeholder="Area/Locality" [(ngModel)]="model.area">
+            <span md-prefix><md-icon>place</md-icon></span>
+        </md-input-container>
+
+    </div>
+    <div fxLayout="column" fxLayout.gt-md="row">
+        <md-input-container fxFlex>
+            <input mdInput placeholder="Remarks/Diagnosis" [(ngModel)]="model.remark">
+        </md-input-container>
+
+        <md-input-container fxFlex>
+            <input mdInput placeholder="Add a Group" [(ngModel)]="model.tags">
+        </md-input-container>
+    </div>
+    <button md-button style="background-color:#33cccc;color:white;" (click)="addLead(model)">Save</button>
+
+</div> -->
+<div style="padding:2% 12% 2% 12%;">
+    <form #f="ngForm" style="width:100%;">
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <label>
+          <input type="radio" [(ngModel)]="model.sele" name="sele" value="doctor" title="Doctor"> Doctor
+          <input type="radio" [(ngModel)]="model.sele" name="sele" value="patient" title="Patient"> Patient
+          <input type="radio" [(ngModel)]="model.sele" name="sele" value="others" title="Others"> Others
+        </label>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="First Name" name="fname" [(ngModel)]="model.fname" id="name" required>
+            </md-input-container>
+        </div>
+
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Last Name" name="lname" [(ngModel)]="model.lname" required>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-select placeholder="Select Gender" name="item" [(ngModel)]="model.gender" style="width:100%;">
+                <md-option value="male" name="item">Male</md-option>
+                <md-option value="female" name="item">Female</md-option>
+            </md-select>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+            <md-input-container fxFlex>
+                <input type="number" mdInput placeholder="Telephone" required name="phone" [(ngModel)]="model.number">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Email" type="email" name="email" required [(ngModel)]="model.email">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container class="example-full-width" style="width:100%;">
+                <input mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker" name="dateofbirth" [(ngModel)]="model.dateofbirth" placeholder="Date Of Birth">
+                <button mdSuffix [mdDatepickerToggle]="picker"></button>
+            </md-input-container>
+            <md-datepicker #picker></md-datepicker>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+
+            <md-input-container fxFlex>
+                <input mdInput placeholder="City" name="city" [(ngModel)]="model.city">
+                <span md-prefix><md-icon>location_city</md-icon></span>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Area/Locality" name="area" [(ngModel)]="model.area">
+                <span md-prefix><md-icon>place</md-icon></span>
+            </md-input-container>
+
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Remarks/Diagnosis" name="remark" [(ngModel)]="model.remark">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Add a Group" [(ngModel)]="model.tags" name="tags">
+            </md-input-container>
+        </div>
+
+        <button md-button style="background-color:#33cccc;color:white;" (click)="addLead(model)">Save</button>
+
+    </form>
+</div>

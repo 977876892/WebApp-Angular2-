@@ -1,0 +1,16 @@
+# typings
+typings
+
+# testing
+karma.conf.js
+test.bundle.js
+coverage
+
+# demo build
+demo
+bundle/demo
+bundle/ng2-completer-demo.*
+bundle/index.html
+webpack.config.js
+
+

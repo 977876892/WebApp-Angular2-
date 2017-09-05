@@ -1,0 +1,56 @@
+@import "../../../../styles/_var";
+:host {
+    display: block;
+    background: #fff url('/assets/img/backgrounds/3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.back_img {
+    height: 100%;
+    background-image: url('/assets/img/background.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.mat-elevation-z12 {
+    box-shadow: none;
+}
+
+.login {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 700px;
+    border-radius: 30px;
+    padding: 25px;
+    .login-header {
+        background: $background-color__sidenav-list;
+        padding: 24px;
+    }
+    .login-content {
+        padding: 24px 42px 42px;
+        md-input-container {
+            width: 100%;
+            margin: 6px 0;
+        }
+        .extra-options {
+            margin: 16px 0 32px;
+            .remember-me {
+                color: #777;
+            }
+        }
+        a {
+            text-decoration: none;
+            color: #2196F3;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+        .note {
+            color: #777;
+            margin: 24px 0 0;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>profile</title>
+
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+    <!--font-awesome-css-->
+    <!-- <link href="./css/font-awesome.css" rel="stylesheet"> -->
+    <!--//font-awesome-css-->
+    <!-- css files -->
+    <!-- <link href="./css/style.css" rel="stylesheet" type="text/css" media="all"> -->
+    <!-- online-fonts -->
+    <!--//online-fonts -->
+    <!-- font-awesome -->
+
+</head>
+
+<body>
+
+    <section class="main-w3l">
+        <div class="w3ls-top">
+            <div class="element-img">
+                <img src="http://khppu.com/assets/default_user_profile_image-1f3ca6988868150bb6f165251fb331b9.png" alt="image" class="img-responsive" />
+            </div>
+            <div class="top-text">
+                <h2>jone de</h2>
+                <h5>Web Designer</h5>
+            </div>
+            <div class="w3ls-ma">
+                <p class="ph-icon">+01 33 444 2222</p>
+                <p><a style="cursor:text;">info@example.com</a></p>
+            </div>
+            <div class="clear"> </div>
+        </div>
+        <div class="agile-form">
+            <form action="#" method="post">
+                <div class="agile_w3l_inner_form">
+
+                    <div class="ft-name">
+                        <input type="text" name="First Name" placeholder="First Name" [(ngModel)]="item.fname" required="required">
+                    </div>
+
+                    <div class="lt-name">
+                        <input type="text" name="Last Name" placeholder="Last Name" [(ngModel)]="item.lname" required="required">
+                    </div>
+
+                    <div class="e-name">
+                        <input type="email" name="email" placeholder="Email Address" [(ngModel)]="item.email" required="required">
+                    </div>
+
+                    <div class="nt-name">
+                        <input type="number" name="mobile" placeholder="Mobile" [(ngModel)]="item.mobile" required="required">
+                    </div>
+
+                    <div class="ft-name">
+                        <input type="text" name="role" placeholder="Role" [(ngModel)]="item.role" required="required">
+                    </div>
+
+
+                    <div class="clear"> </div>
+                    <!-- <div class="e-name">
+                        <input type="email" name="Email" placeholder="Email Address" required="required">
+                    </div> -->
+                    <!-- <textarea name="Message" placeholder="Message"  required=""></textarea> -->
+                </div>
+                <div class="w3ls-bottom">
+
+                    <input type="submit" value="Submit" (click)="frmsubmit(item)">
+
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
+
+</body>
+
+</html>

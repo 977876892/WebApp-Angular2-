@@ -1,0 +1,116 @@
+<div fxLayout="column" fxLayout.gt-md="row">
+    Select Doctor:
+  <select [(ngModel)]="selectedDoctor" (change)="onChange(selectedDoctor)">
+                <option *ngFor="let dr of drlist" [value]="dr.id_resources">{{dr.name}}</option>
+            </select>
+              <input type="date" [(ngModel)]="newVisit.selectedDate" (change)="dateChange(selectedDate)"/>
+              <select [(ngModel)]="selectedTimeSlot" (change)="onTimeChange(selectedTimeSlot)">
+                <option *ngFor="let dr of drTimeSlots" [ngValue]="dr">{{dr.startendtime}}</option>
+            </select>
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="First Name" [(ngModel)]="newVisit.firstname">
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="Last Name" [(ngModel)]="newVisit.lastname">
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex>
+      <input mdInput placeholder="Phone Number" [(ngModel)]="newVisit.phone">
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput placeholder="Total Amount" [(ngModel)]="newVisit.totalamount">
+    </md-input-container>
+     <md-input-container fxFlex>
+      <input mdInput placeholder="Amount Deposit" [(ngModel)]="newVisit.depositamount">
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex>
+      <input mdInput placeholder="Email" [(ngModel)]="newVisit.email">
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput placeholder="age" [(ngModel)]="newVisit.age">
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput placeholder="Date Of Birth" [(ngModel)]="newVisit.dob">
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+     <select [(ngModel)]="newVisit.status">
+        <option value="new">New</option>
+        <option value="accepted">Accepted</option>
+        <option value="review">Review</option>
+        <option value="canceled">cancelled</option>
+      </select>
+      <select [(ngModel)]="newVisit.gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+  </div>
+    <div fxLayout="column" fxLayout.gt-md="row">
+     <md-input-container fxFlex>
+      <input mdInput placeholder="City" [(ngModel)]="newVisit.city">
+    </md-input-container>
+     <md-input-container fxFlex>
+      <input mdInput placeholder="Area/Locality" [(ngModel)]="newVisit.area">
+    </md-input-container>
+       <md-input-container fxFlex>
+      <input mdInput placeholder="Add Remarks" [(ngModel)]="newVisit.remarks">
+    </md-input-container>
+  </div>
+   <div fxLayout="column" fxLayout.gt-md="row">
+      <button md-raised-button type="button" (click)="addNewVisit(newVisit)" color="primary">Add Visit</button>
+   </div>
+  <!-- <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex dividerColor="accent">
+      <input mdInput
+             placeholder="Pre-filled Input + Accent color" value="Material Design">
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="Address">
+      <span md-prefix><md-icon>place</md-icon></span>
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="City">
+      <span md-prefix><md-icon>location_city</md-icon></span>
+    </md-input-container>
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="Country">
+      <span md-suffix><md-icon>local_airport</md-icon></span>
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="Character count (max. 100)"
+             maxlength="100"
+             #characterCountHintExample
+             value="Hello! How are you today?">
+      <md-hint align="end">{{ characterCountHintExample.value.length }} / 100</md-hint>
+       <button md-raised-button type="button" (click)="addNewVisit()" color="primary">Add Visit</button>
+                   
+    </md-input-container>
+  </div>
+  <div fxLayout="column" fxLayout.gt-md="row">
+    <md-input-container fxFlex>
+      <input mdInput
+             placeholder="Primary Color">
+    </md-input-container>
+    <md-input-container dividerColor="accent" fxFlex>
+      <input mdInput
+             placeholder="Accent Color">
+    </md-input-container>
+    <md-input-container dividerColor="warn" fxFlex>
+      <input mdInput
+             placeholder="Warn Color">
+    </md-input-container>
+  </div> -->
+  

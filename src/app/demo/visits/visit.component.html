@@ -1,0 +1,8 @@
+<div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
+    <div class="margin-top">
+        <ms-activity-visits [visits]="allVisits" style="cursor:pointer;"></ms-activity-visits>
+        <button md-raised-button type="button" (click)="openAddNewVisit()" color="primary">Add Visit</button>
+        <button md-raised-button type="button" (click)="loadMore()" *ngIf="nextDate!=''" color="primary">Load More</button>
+        <!-- <button md-raised-button (click)="editDialog()" color="primary">Edit</button> -->
+    </div>
+</div>

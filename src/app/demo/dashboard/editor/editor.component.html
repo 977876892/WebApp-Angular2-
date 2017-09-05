@@ -1,0 +1,7 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start center" style="height: 100%;">
+
+    <div class="editor-container mat-elevation-z16">
+        <quill-editor [(ngModel)]="editor"></quill-editor>
+    </div>
+    <button md-raised-button type="button" (click)="submit_editor(editor)" color="primary">Submit</button>
+</div>
