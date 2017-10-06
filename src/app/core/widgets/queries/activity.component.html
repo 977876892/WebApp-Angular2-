@@ -1,22 +1,22 @@
 <div class="activity-card mat-elevation-z2" *ngFor="let question of questions" style="margin-bottom: 14px;">
-  <div class="title-container" fxLayout="row" fxLayoutAlign="start center">
-    <div fxLayout="column">
-      <span class="title">{{ question.title  }}</span>
-      <!--<span class="extra">{{ subTitle }}</span>-->
-    </div>
-    <span fxFlex></span>
-    <!--<button md-icon-button (click)="reload()">
+    <div class="title-container" fxLayout="row" fxLayoutAlign="start center" [routerLink]="['/question-details', question.id]" *ngIf="question.state!=0">
+        <div fxLayout="column">
+            <span class="title">{{ question.title  }}</span>
+            <!--<span class="extra">{{ subTitle }}</span>-->
+        </div>
+        <span fxFlex></span>
+        <!--<button md-icon-button (click)="reload()">
       <md-icon>refresh</md-icon>
     </button>-->
-    <button md-icon-button [mdMenuTriggerFor]="options">
+        <!-- <button md-icon-button [mdMenuTriggerFor]="options">
       <md-icon>more_vert</md-icon>
-    </button>
+    </button> -->
   </div>
-  <div class="content">
+  <div class="content" [routerLink]="['/question-details', question.id]" *ngIf="question.state!=0">
     <md-nav-list>
       <a href="javascript:" md-list-item>
         <img md-list-avatar [src]="question.image" alt="...">
-        <h3 md-line [routerLink]="['/question-details', question.id]"> {{ question.poster_name }} </h3>
+        <h3 md-line> {{ question.poster_name }} </h3>
         <p md-line>
           <!--<span class="title"> {{ feed.subject }} </span>-->
           <span class="extra"> {{ question.content }} </span>
@@ -24,10 +24,10 @@
       </a>
     </md-nav-list>
   </div>
-  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+  <!-- <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay> -->
 </div>
 
-<md-menu #options="mdMenu">
+<!-- <md-menu #options="mdMenu">
   <button md-menu-item>
     <md-icon> settings </md-icon>
     <span> Settings </span>
@@ -40,4 +40,4 @@
     <md-icon> remove_circle </md-icon>
     <span> Remove Widget </span>
   </button>
-</md-menu>
+</md-menu> -->

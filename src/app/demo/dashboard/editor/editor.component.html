@@ -1,7 +1,15 @@
 <div class="container" fxLayout="column" fxLayoutAlign="start center" style="height: 100%;">
-
-    <div class="editor-container mat-elevation-z16">
-        <quill-editor [(ngModel)]="editor"></quill-editor>
+    <div>
+        <h5>Title Of The Blog</h5>
+        <b><input type="text"  [(ngModel)]="title" style="width: 100%;"></b>
     </div>
-    <button md-raised-button type="button" (click)="submit_editor(editor)" color="primary">Submit</button>
+    <br>
+    <div class="editor-container mat-elevation-z16">
+        <quill-editor [(ngModel)]="content"></quill-editor>
+    </div>
+    <div style="margin-top:10px;">
+    <button md-raised-button type="button" (click)="drftTheBlog(editor)" color="primary" *ngIf="status!=0">Draft</button>
+    <button md-raised-button type="button" (click)="ionizeTheBlog(editor)" color="primary" *ngIf="status!=0">Ionize</button>
+    <button md-raised-button type="button" (click)="publishTheBlog(editor)" color="primary">Publish</button>
+    </div>
 </div>

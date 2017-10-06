@@ -4,7 +4,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import {fadeInAnimation} from "../../../route.animation";
 import {AuthenticationService } from './authentication.service';
 import {User} from './user';
-import {Observable} from 'rxjs/Rx';
+
 
 
 
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  profile:string;
   model: any = {};
   loading = false;
   returnUrl: string;
@@ -34,6 +33,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    Cookie.set("ION_SERVER","http://dashboard.getion.in");
   }
 
   login() {
@@ -47,17 +47,21 @@ export class LoginComponent implements OnInit {
                   console.log(data);
                   Cookie.set("username", this.username);
                   Cookie.set("password", this.password);
+                  Cookie.set("teamid",data.teamid);
+                  Cookie.set("userid",data.id);
+                  Cookie.set("authkey",data.auth);
+                  Cookie.set("category",data.publishid);
                   Cookie.set("profile",data.profile_image);
-                  console.log(Cookie.get("username"));
-                  console.log(Cookie.get("password"));
-                  console.log(Cookie.get("ION_SERVER"));
-                  console.log(Cookie.get("profile"));
-                   // this.router.navigate([this.returnUrl]);
-                   this.router.navigate(['/dashboard']);
+                  Cookie.set("fname",data.firstname);
+                  Cookie.set("lname",data.lastname);
+                  Cookie.set("email",data.email);
+                  Cookie.set("phone",data.phone);
+                  Cookie.set("aboutme",data.aboutme);
+                  Cookie.set("role",data.job_type);
+                  this.router.navigate(['/dashboard']);
 
                 },
                 error => {
-                   // this.alertService.error(error);
                    console.log("error");
                     this.loading = false;
                 });

@@ -1,63 +1,76 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './products';
+import { Lead } from './lead';
 import { Http , Response } from '@angular/http';
-import {LeadService} from './addLead-service';
+import {LeadsService} from "../leads.service";
+import { TagInputModule } from 'ngx-chips';
+import {VisitService} from '../../visits/visit.service';
+import {Router,ActivatedRoute,Params,ActivatedRouteSnapshot } from "@angular/router";
 @Component({
   selector: 'ms-editor',
   templateUrl: './add_leads.component.html',
-   providers: [LeadService]
+   providers: [LeadsService,VisitService]
 })
 
 export class AddLeadComponent implements OnInit {
 
 
-
-  constructor(private leadService:LeadService) { }
+  private tags:string="";
+  constructor(private leadService:LeadsService,private route:Router,private visitService:VisitService) { }
 
 
   ngOnInit() {
   }
-    model = new Product();
+    lead = new Lead();
 
-    fileEvent(fileInput: any){
-    let file = fileInput.target.files[0];
-    let fileName = file.name;
+    // fileEvent(fileInput: any){
+    // let file = fileInput.target.files[0];
+    // let fileName = file.name;
 
-    console.log(fileName);
+    // console.log(fileName);
+    //   }
+  addLead(){
+     
+     console.log(this.lead);
+     if(this.lead.department=="")
+      {
+        this.lead.department="Patient";
       }
-  // addLead(model,fileName){
-  //   // console.log("hello");
-  //    this.model=model;
-
-  //   // console.log(this.model);
-  //    this.leadService.saveLead(this.model).subscribe(data => {
-  //     console.log(data);
-
-  //   });
-     //console.log('http://dashboard.getion.in/index.php/request/post/contacts/contacts?type=Doctor&age=24&firstname='+this.model.fname+'&surname='+this.model.lname+'&mobile='+this.model.number+'&email='+this.model.email+'&dob='+this.model.date+'&sex='+this.model.selectedValue+'&image=&area='+this.model.place+'&city='+this.model.city+'&remarks='+this.model.remark+'&userid=180&contactTags=head,&tagflag='+this.model.group);
-      // this.http.post('http://dashboard.getion.in/index.php/request/post/contacts/contacts?type='+this.model.sele+'&age=24&firstname='+this.model.fname+'&surname='+this.model.lname+'&mobile='+this.model.number+'&email='+this.model.email+'&dob='+this.model.date+'&sex='+this.model.selectedValue+'&image=&area='+this.model.place+'&city='+this.model.city+'&remarks='+this.model.remark+'&userid=180&contactTags='+this.model.group+'&tagflag=1')
-      // .subscribe((data)=> {
-
-      //   console.log('received response');
-      // });
-    //}
-    addLead(model,fileName){
-      console.log("hello");
-      console.log(model.fname);
-      if(model.fname == undefined && model.lname == undefined && model.number == undefined && model.email == undefined){
-        console.log("false");
+     if(this.lead.tags.length!=0)
+      {
+          for(var i=0;i<this.lead.tags.length;i++)
+            {
+              this.tags +=this.lead.tags[i].value +",";
+            }
       }
-      else{
-        this.model=model;
-        this.leadService.saveLead(this.model).subscribe(data => {
-           console.log(data);
-
-              });
-          this.model.fname="";
-          console.log(this.model.fname);
-        console.log("true");
-      }
+          if(this.lead.firstname!=""&&this.lead.lastname!=""&&typeof this.lead.phone!="undefined" && this.lead.email!="")
+            {
+                  this.leadService.saveLead(this.lead,this.tags).subscribe(data => {
+                    console.log(data);
+                    this.route.navigate(['/leads']);
+                  });
+            }
+    
     }
+   imageUploaded(src){
+      //console.log(src);
+    //   console.log(src.file);
+    //  var fd = new FormData();
+    //  fd.append('file',src.file);
+    //  fd.append('userid', "180");
+    //  fd.append('username','ramesh')
+    //  fd.append('password','QFJhbWVzaDEyMyM=');
+    //  fd.append('encode',"true");
+    //  fd.append('auth_key','178b5f7f049b32a8fc34d9116099cd706b7f9631')
+
+// username:ramesh
+// password:QFJhbWVzaDEyMyM=
+// encode:true
+// auth_key:178b5f7f049b32a8fc34d9116099cd706b7f9631
+     this.visitService.uploadImage(src).subscribe(data =>{
+       console.log(data.url);
+      this.lead.image=data.url;
+    });    
+  }
 
 
 

@@ -1,13 +1,9 @@
-<div class="activity-card mat-elevation-z2" *ngFor="let feed of feeds" style="margin-bottom: 14px;">
+<!-- <div class="activity-card mat-elevation-z2" *ngFor="let feed of feeds" style="margin-bottom: 14px;">
   <div class="title-container" fxLayout="row" fxLayoutAlign="start center">
     <div fxLayout="column">
       <span class="title">{{ feed.title  }}</span>
-      <!--<span class="extra">{{ subTitle }}</span>-->
     </div>
     <span fxFlex></span>
-    <!--<button md-icon-button (click)="reload()">
-      <md-icon>refresh</md-icon>
-    </button>-->
     <button md-icon-button [mdMenuTriggerFor]="options">
       <md-icon>more_vert</md-icon>
     </button>
@@ -18,7 +14,6 @@
         <img md-list-avatar [src]="feed.image.url" alt="...">
         <h3 md-line> {{ feed.author.name }} </h3>
         <p md-line>
-          <!--<span class="title"> {{ feed.subject }} </span>-->
           <span class="extra"> {{ feed.intro }} </span>
         </p>
       </a>
@@ -40,4 +35,16 @@
     <md-icon> remove_circle </md-icon>
     <span> Remove Widget </span>
   </button>
-</md-menu>
+</md-menu> -->
+
+
+<div class="w3-row">
+  <div class="w3-col s6" *ngFor="let feed of feeds" style="background-color: white !important;color: black !important;width: 48% !important; margin:10px;">
+    
+    <img [src]="feed.image.url" style="width:100%">
+    <div class="w3-container w3-center">
+      <p style="margin-top:5px;">{{ feed.title  }}</p>
+    </div>
+  </div>
+  
+</div>

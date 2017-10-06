@@ -1,0 +1,15 @@
+<div style="height:400px;overflow:auto;">
+    <h1 md-dialog-title>Select Groups</h1>
+    <hr>
+    <table>
+        <tr *ngFor="let item of groupmsg">
+            <td style=" cursor: pointer;border-bottom:1px solid black;padding:2px;" (click)="selectgroupitems(item.title)">{{item.title}}</td>
+        </tr>
+    </table>
+
+
+    <div md-dialog-actions>
+        <button md-button style="color: #fff;background-color: #153961;" (click)="dialogRef.close(true) ">Confirm</button>
+        <button md-button (click)="dialogRef.close(false) ">Cancel</button>
+    </div>
+</div>

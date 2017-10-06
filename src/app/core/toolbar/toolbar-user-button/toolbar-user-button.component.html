@@ -12,20 +12,25 @@
             <div class="list">
                 <div class="item" fxLayout="row" fxLayoutAlign="start center" style="outline:none;" md-ripple [routerLink]="['/profile']">
                     <md-icon class="icon">account_circle</md-icon>
-                    <span class="title">Profile</span>
+                    <span class="title"> Profile</span>
                 </div>
                 <div class="item" fxLayout="row" fxLayoutAlign="start center" md-ripple>
                     <md-icon class="icon">settings</md-icon>
-                    <span class="title">Settings</span>
+                    <span class="title"> Settings</span>
                 </div>
-                <div class="item" fxLayout="row" fxLayoutAlign="start center" md-ripple>
-                    <md-icon class="icon">help</md-icon>
-                    <span class="title">Help</span>
+                <div class="item" fxLayout="row" fxLayoutAlign="start center" md-ripple [routerLink]="[ '/google_analytics']">
+                    <md-icon class="icon ">help</md-icon>
+                    <span class="title "> Google Analytics</span>
+                </div>
+                <div class="item" fxLayout="row" fxLayoutAlign="start center" md-ripple [routerLink]="[ '/compose_message']">
+                    <!-- <md-icon class="icon ">Message</md-icon> -->
+                    <i class="material-icons">message</i>
+                    <span class="title "> Compose Message</span>
                 </div>
                 <md-divider></md-divider>
-                <div (click)="logout()" class="item" fxLayout="row" fxLayoutAlign="start center" md-ripple [routerLink]="['/login']">
-                    <md-icon class="icon">exit_to_app</md-icon>
-                    <span class="title">Logout</span>
+                <div (click)="logout() " class="item " fxLayout="row " fxLayoutAlign="start center " md-ripple [routerLink]="[ '/login'] ">
+                    <md-icon class="icon ">exit_to_app</md-icon>
+                    <span class="title "> Logout</span>
                 </div>
             </div>
         </div>

@@ -13,17 +13,15 @@ export class ToolbarUserButtonComponent implements OnInit {
 
   constructor(
      private router: Router
-  ) {  }
-
+  ) { }
+name=Cookie.get("username"); //login person name
+  profile_pic=Cookie.get("profile"); //login person pic
   ngOnInit() {
   }
-  name=Cookie.get("username"); //login person name
-  profile_pic=Cookie.get("profile"); //login person pic
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
-
 
   onClickOutside() {
     this.isOpen = false;
@@ -31,10 +29,9 @@ export class ToolbarUserButtonComponent implements OnInit {
   logout(){
     Cookie.delete('username');
     Cookie.delete('password');
-    Cookie.delete('ION_SERVER');
     Cookie.delete('profile');
+    Cookie.delete('ION_SERVER');
     this.router.navigate(['/']);
   }
-
 
 }

@@ -8,7 +8,10 @@ import {fadeInAnimation} from "../../route.animation";
 import {Router,ActivatedRoute,Params,ActivatedRouteSnapshot } from "@angular/router";
 import {VisitService} from "./visit.service";
 import {NewVisitForm} from "./visit";
-
+import {LeadsService} from "../leads/leads.service";
+import { TagInputModule } from 'ngx-chips';
+import {MdSnackBar} from '@angular/material';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 
 
 
@@ -16,7 +19,7 @@ import {NewVisitForm} from "./visit";
   selector: 'VisitDetailed',
   templateUrl: './visit.detail.component.html',
   styleUrls: ['./visit.component.scss'],
-   providers: [VisitService] ,
+   providers: [VisitService,LeadsService] ,
   host: {
     '[@fadeInAnimation]': 'true'
   },
@@ -33,90 +36,137 @@ export class VisitDetails implements OnInit, AfterViewInit {
   recentSalesProductsDemoData;
   recentSalesDemoData;
   trafficSourcesDemoData;
-  private router: Router;
+  //private router: Router;
   private addComment:string;
-  //private route: ActivatedRoute;
   private id :String;
+  private tags:String="";
   private newVisit=new NewVisitForm();
-
+  private selectedDate:String;
   //form details
-  //private selectedValue:number;
-  // private selectedDoctor:number;
-  // private firstname:String;
-  // private lastname:String;
-  // private phone:String;
-  // private totalamount:String;
-  // private depositamount:String;
-  // private email:String;
-  // private age:String;
-  // private dob:String;
-  // private status:String;
-  // private gender:String;
-  // private city:String;
-  // private area:String;
-  // private remarks:String;
    private drTimeSlots:String;
    private newAppStatus:any;
-  // private selectedDate:String;
-  // private startTime:String;
-  // private endTime:String;
   //form details
 
   drlist:any[];
+  imageUploaded(src){
+      //console.log(src);
+      console.log(src.file);
+    //  var fd = new FormData();
+    //  fd.append('file',src.file);
+    //  fd.append('userid', "180");
+    //  fd.append('username','ramesh')
+    //  fd.append('password','QFJhbWVzaDEyMyM=');
+    //  fd.append('encode',"true");
+    //  fd.append('auth_key','178b5f7f049b32a8fc34d9116099cd706b7f9631')
+
+// username:ramesh
+// password:QFJhbWVzaDEyMyM=
+// encode:true
+// auth_key:178b5f7f049b32a8fc34d9116099cd706b7f9631
+     this.visitService.uploadImage(src).subscribe(data =>{console.log(
+       data.url);
+      this.newVisit.image=data.url;});    
+  }
   onChange(selectedDoctor){
     console.log(selectedDoctor);
-    this.newVisit.selectedDoctor=selectedDoctor;
-    //this.selectedDoctor=selectedDoctor;
+    this.newVisit.selectedDoctor=selectedDoctor.id_resources;
+    this.newVisit.totalamount=selectedDoctor.rate;
   }
   onTimeChange(selectedTime){
+  
       this.newVisit.startTime=selectedTime.timeslot_starttime;
       this.newVisit.endTime=selectedTime.timeslot_endtime;
   }
     dateChange(datechange){
-
-    this.visitService.getDrTimeslots(this.newVisit.selectedDoctor,datechange).subscribe(data => {this.drTimeSlots = data.data;console.log(data)});
-
+      this.selectedDate=datechange.getFullYear()+"-"+(datechange.getMonth()+1)+"-"+datechange.getDate();
+      this.newVisit.startDate=this.selectedDate;
+      this.newVisit.endDate=this.selectedDate;
+      this.visitService.getDrTimeslots(this.newVisit.selectedDoctor,this.selectedDate).subscribe(data => {this.drTimeSlots = data.data;
+       console.log(data);
+      });
     }
-  constructor(private visitService: VisitService,private route: ActivatedRoute) {
+  constructor(private visitService: VisitService,private leadService:LeadsService,private route: Router,private snackBar: MdSnackBar) {
    }
+  calculateAge (dateOfBirth, dateToCalculate) {
+                var age = dateToCalculate.getFullYear() - dateOfBirth.getFullYear();
+                var ageMonth = dateToCalculate.getMonth() - dateOfBirth.getMonth();
+                var ageDay = dateToCalculate.getDate() - dateOfBirth.getDate();
+                if (ageMonth < 0 || (ageMonth == 0 && ageDay < 0)) {
+                    age =age - 1;
+                }
+               this.newVisit.age=age;
+        }
   addNewVisit(newVisit){
     this.newVisit=newVisit;
     console.log(this.newVisit);
-    // console.log(this.selectedDoctor);
-    // console.log( this.selectedDate);
-    // console.log(this.startTime);
-    // console.log(this.endTime);
-    // console.log(this.firstname);
-    // console.log(this.lastname);
-    // console.log(this.phone);
-    // console.log(this.totalamount);
-    // console.log(this.depositamount);
-    // console.log(this.email);
-    // console.log(this.age);
-    // console.log(this.dob);
-    // console.log(this.status);
-    // console.log(this.gender);
-    // console.log(this.city);
-    // console.log(this.area);
-    // console.log(this.remarks);
-
-    this.visitService.saveAppointment(this.newVisit)
-    .subscribe(data => {this.newAppStatus = data;console.log(this.newAppStatus)});
-  }
+    
+    
+        // console.log(this.newVisit);
+        // console.log(this.newVisit.startTime);
+        if(typeof this.newVisit.selectedDoctor=="undefined")
+          {
+               this.snackBar.open('Please Selcet Doctor!', 'Close', {
+                          duration: 3000
+                        });
+          }else if(typeof this.newVisit.startDate=="undefined")
+          {
+               this.snackBar.open('Please Selcet Date!', 'Close', {
+                          duration: 3000
+                        });
+          }
+          else if(typeof this.newVisit.startTime=="undefined")
+            {
+                  this.snackBar.open('Please Selcet TimiSlot!', 'Close', {
+                          duration: 3000
+                        });
+            }
+            else if(this.newVisit.firstname!="" && this.newVisit.lastname!="" && this.newVisit.phone!="" && this.newVisit.email!="")
+              {
+                this.newVisit.department="Patient";
+                if(this.newVisit.dob!=''&&typeof this.newVisit.dob!='undefined'){
+                        this.calculateAge(new Date(this.newVisit.dob),new Date());
+                }
+                else if(typeof this.newVisit.age!='undefined'){
+                      var today=new Date();
+                      this.newVisit.dob=today.getFullYear()-this.newVisit.age+"/"+(today.getMonth()+1)+"/"+today.getDate();
+                } 
+                else{
+                  this.newVisit.age=0;
+                }       
+                if(typeof this.newVisit.tags!="undefined")
+                  {
+                    for(var i=0;i<this.newVisit.tags.length;i++)
+                      {
+                        this.tags +=this.newVisit.tags[i].value +",";
+                      }
+                  }
+                    if(typeof this.newVisit.depositamount=="undefined")
+                    {
+                          this.newVisit.depositamount=0;
+                    }
+                this.leadService.saveLead(this.newVisit,this.tags).subscribe(data => {
+                          this.visitService.saveAppointment(this.newVisit,data.id)
+                                .subscribe(data => {this.newAppStatus = data;
+                                this.route.navigate(['/visits'])});
+                });
+              }
+    
+ 
+   }
   ngOnInit() {
 if(Cookie.get("username")==null){
-    this.router.navigate(['/']);
+    this.route.navigate(['/']);
 }
-       this.visitService.getDrList().subscribe(data => {this.drlist = data.data;console.log(this.drlist)});
+       this.visitService.getDrList().subscribe(data => {this.drlist = data.data;});
      // this.visitService.getVisits().subscribe(data => {this.drlist = data.data;console.log(data)});
     // this.route.params.subscribe(params => {
-    //    this.id = params['id'];
+    //    this.id = params['id']; 
     // });
-
+   
     // this.visitService.getDetailQuery(this.id).subscribe(data => {this.detailQuery = data.posts;
-
+      
     // });
-
+    
     //this.discreteBarDemoData = discreteBarDemoDataGenerator();
     //this.lineChartDemoData = lineChartDemoDataGenerator();
     //this.lineChartInterpolatedDemoData = lineChartInterpolatedDemoDataGenerator();

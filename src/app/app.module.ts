@@ -18,6 +18,10 @@ import { CoreModule } from './core/core.module';
 import { DemoModule } from './demo/demo.module';
 //import {LoginComponent} from './demo/custom-pages/login/login.component';
 import { SortablejsModule, SortablejsOptions } from 'angular-sortablejs';
+import { TagInputModule } from 'ngx-chips';
+import {ImageUploadModule} from "angular2-image-upload";
+import {ModalModule} from "ng2-modal";
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -41,7 +45,10 @@ const sortablejsConfig: SortablejsOptions = {
     CoreModule,
     DemoModule,
     SortablejsModule,
+    TagInputModule,
     PerfectScrollbarModule.forRoot(perfectScrollbarConfig),
+    ImageUploadModule.forRoot(),
+    ModalModule
   ],
   providers: [
     MdIconRegistry,

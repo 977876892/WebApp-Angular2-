@@ -20,7 +20,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
-import { VisitDialogOverviewExampleDialog } from "../core/widgets/visits/activity.component";
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+import {ModalModule} from "ng2-modal";
 
 @NgModule({
   imports: [
@@ -29,10 +31,9 @@ import { VisitDialogOverviewExampleDialog } from "../core/widgets/visits/activit
     MaterialComponentsModule,
     FlexLayoutModule,
     FormsModule,
-    PerfectScrollbarModule.forChild()
-  ],
-  entryComponents: [
-   VisitDialogOverviewExampleDialog
+    TagInputModule,
+    PerfectScrollbarModule.forChild(),
+    ModalModule
   ],
   declarations: [
     SidenavComponent,
@@ -46,12 +47,14 @@ import { VisitDialogOverviewExampleDialog } from "../core/widgets/visits/activit
     ToolbarUserButtonComponent,
     ClickOutsideDirective,
     SearchBarComponent,
-    ToolbarNotificationsComponent,VisitDialogOverviewExampleDialog
+    ToolbarNotificationsComponent
   ],
   providers: [
     SidenavService,
     MediaReplayService,
     BreadcrumbService
-  ]
+  ],
+  entryComponents: [
+]
 })
 export class CoreModule { }

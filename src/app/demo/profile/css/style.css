@@ -366,6 +366,12 @@ p.ph-icon {
     margin-bottom: 10px;
 }
 
+.textarea-name {
+    float: left;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
 .nt-name {
     float: left;
     width: 50%;
@@ -386,7 +392,8 @@ p.ph-icon {
 
 .ft-name input[type="text"],
 .lt-name input[type="text"],
-.nt-name input[type="number"] {
+.nt-name input[type="number"],
+.textarea-name textarea {
     width: 85%;
     color: #212121;
     background: none;
@@ -660,6 +667,7 @@ p.ph-icon {
 @media (max-width:440px) {
     .ft-name input[type="text"],
     .lt-name input[type="text"],
+    .textarea-name textarea,
     .nt-name input[type="number"] {
         width: 83%;
     }
@@ -685,6 +693,7 @@ p.ph-icon {
         padding: 1em 0 0.5em 0;
     }
     .ft-name input[type="text"],
+    .textarea-name textarea,
     .lt-name input[type="text"],
     .nt-name input[type="number"] {
         width: 82%;
@@ -703,6 +712,7 @@ p.ph-icon {
 
 @media (max-width:384px) {
     .ft-name input[type="text"],
+    .textarea-name textarea,
     .lt-name input[type="text"],
     .nt-name input[type="number"],
     {
@@ -732,6 +742,9 @@ p.ph-icon {
     .agileheader h1 {
         font-size: 23px;
     }
+    .agile-form[_ngcontent-c20][_ngcontent-c20] textarea[_ngcontent-c20][_ngcontent-c20] {
+        width: 83%;
+    }
 }
 
 @media (max-width:320px) {
@@ -754,6 +767,7 @@ p.ph-icon {
         width: 81%;
     }
     .ft-name input[type="text"],
+    .textarea-name textarea,
     .lt-name input[type="text"],
     .nt-name input[type="number"] {
         width: 74%;
@@ -773,6 +787,13 @@ p.ph-icon {
     .top-text h2 {
         font-size: 16px;
     }
+    .agile-form[_ngcontent-c20][_ngcontent-c20] textarea[_ngcontent-c20][_ngcontent-c20] {
+        width: 75%;
+    }
+}
+
+.agile-form[_ngcontent-c20] textarea[_ngcontent-c20] {
+    width: 85%;
 }
 
 

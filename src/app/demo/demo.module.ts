@@ -27,11 +27,11 @@ import { ForgotPasswordComponent } from './custom-pages/forgot-password/forgot-p
 import { AddLeadComponent } from './leads/add_leads/add_leads.component';
 import { LeadsComponent } from './leads/leads.component';
 import { DialogOverviewExampleDialog} from './leads/leads.component';
-import { ProfileComponent } from './profile/profile';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent,ProfileDialogOverviewExampleDialog } from './profile/profile';
+import { DashboardComponent,BlogViewDialog } from './dashboard/dashboard.component';
 import { QueryComponent } from "./queries/query.component";
 import { QueryDetails} from "./queries/query.detail.component";
-import { VisitComponent} from "./visits/visit.component";
+import { VisitComponent,VisitDialogOverviewExampleDialog} from "./visits/visit.component";
 import { VisitDetails} from "./visits/visit.detail.component";
 import { BarChartComponent } from '../core/widgets/bar-chart/bar-chart.component';
 import { LineChartComponent } from '../core/widgets/line-chart/line-chart.component';
@@ -41,14 +41,13 @@ import { GoogleMapsWidgetComponent } from '../core/widgets/google-maps-widget/go
 import { ActivityComponent } from '../core/widgets/activity/activity.component';
 import { QueryActivityComponent } from '../core/widgets/queries/activity.component';
 import { QueryDetailActivityComponent } from '../core/widgets/queries/detail.component';
-import { VisitActivityComponent } from '../core/widgets/visits/activity.component';
 import { TrafficSourcesComponent } from '../core/widgets/traffic-sources/traffic-sources.component';
 import { LoadingOverlayComponent } from '../core/loading-overlay/loading-overlay.component';
 import { DragAndDropComponent } from './drag-and-drop/drag-and-drop.component';
 import { InboxComponent } from './apps/inbox/inbox.component';
 import { InboxComposeComponent } from './apps/inbox/inbox-compose/inbox-compose.component';
-import { CalendarComponent } from '../demo/calendar/calendar.component';
-import { CalendarEditComponent } from '../demo/calendar/calendar-edit/calendar-edit.component';
+// import { CalendarComponent } from './apps/calendar/calendar.component';
+// import { CalendarEditComponent } from './apps/calendar/calendar-edit/calendar-edit.component';
 import { ChatComponent } from './apps/chat/chat.component';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { environment } from "../../environments/environment";
@@ -68,11 +67,33 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { QuillModule } from 'ngx-quill';
 import { Pipe, PipeTransform } from '@angular/core';
 import {FilterPipe} from './leads/pipe';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+//calendar
+import { CalendarComponent } from '../demo/calendar/calendar.component';
+import { CalendarEditComponent } from '../demo/calendar/calendar-edit/calendar-edit.component';
+//calendar
+//editor
 import { ContentEditorComponent } from '../demo/dashboard/editor/editor.component';
+//import { QuillEditorModule } from 'ng2-quill-editor';
+import {ImageUploadModule} from "angular2-image-upload";
+import {ModalModule} from "ng2-modal";
+//editor
+import {GoogleAnalyticsComponent} from './google_analytics/google_analytics';
+import {ComposeMessageComponent} from './compose_message/compose_message.component';
+
+
+
+// delete confirmationdialog box
+import{ConfirmationDialog} from "../demo/dashboard/confirmation-dialog";
+import{QueryConfirmationDialog} from "../demo/queries/confirmation-dialog";
+import{VisitConfirmationDialog} from "../demo/visits/confirmation-dialog";
+import {ComposeMsgDialog} from '../demo/compose_message/confirmation-dialog';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown'; // npm install angular2-multiselect-dropdown
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule,AngularMultiSelectModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -81,6 +102,7 @@ import { ContentEditorComponent } from '../demo/dashboard/editor/editor.componen
     RoutingModule,
     MaterialComponentsModule,
     FlexLayoutModule,
+    TagInputModule,
     AgmCoreModule.forRoot({
       apiKey: environment.googleApi
     }),
@@ -89,22 +111,24 @@ import { ContentEditorComponent } from '../demo/dashboard/editor/editor.componen
     SortablejsModule,
     CalendarModule.forRoot(),
     PerfectScrollbarModule.forChild(),
+    ImageUploadModule.forRoot(),
+    ModalModule,
   ],
   entryComponents: [
     DemoDialog,
     InboxComposeComponent,
-    CalendarEditComponent,DialogOverviewExampleDialog
+    CalendarEditComponent,DialogOverviewExampleDialog,VisitDialogOverviewExampleDialog,ProfileDialogOverviewExampleDialog,BlogViewDialog,ConfirmationDialog,QueryConfirmationDialog,VisitConfirmationDialog,ComposeMsgDialog
   ],
   declarations: [
-    DashboardV1Component,
+    DashboardV1Component,ProfileComponent, GoogleAnalyticsComponent, ComposeMessageComponent,
     ButtonsComponent,
-    FormElementsComponent,
+    FormElementsComponent,ConfirmationDialog,QueryConfirmationDialog, VisitConfirmationDialog,ComposeMsgDialog,
     ListsComponent,
     WidgetComponent,
     LineChartWidgetComponent,
     SourceOverviewWidgetComponent,
     SimpleTableComponent,
-    FixedHeaderTableComponent, ContentEditorComponent,
+    FixedHeaderTableComponent,
     FormWizardComponent,
     GoogleMapsComponent,
     CardsComponent,
@@ -120,12 +144,14 @@ import { ContentEditorComponent } from '../demo/dashboard/editor/editor.componen
     Level5Component,
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent,
+    ForgotPasswordComponent,ProfileDialogOverviewExampleDialog,
+    BlogViewDialog,
     AddLeadComponent,
     LeadsComponent,DialogOverviewExampleDialog, ProfileComponent,
     DashboardComponent,
     QueryComponent,
     VisitComponent,
+    VisitDialogOverviewExampleDialog,
     QueryDetails,
     VisitDetails,
     BarChartComponent,
@@ -136,7 +162,6 @@ import { ContentEditorComponent } from '../demo/dashboard/editor/editor.componen
     ActivityComponent,
     QueryActivityComponent,
     QueryDetailActivityComponent,
-    VisitActivityComponent,
     TrafficSourcesComponent,
     LoadingOverlayComponent,
     DragAndDropComponent,
@@ -145,7 +170,9 @@ import { ContentEditorComponent } from '../demo/dashboard/editor/editor.componen
     CalendarComponent,
     CalendarEditComponent,
     ChatComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ContentEditorComponent,
+   // QuillEditorModule
   ],
   providers: [
     D3ChartService,

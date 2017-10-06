@@ -9,6 +9,7 @@ import {MdDialog, MdSnackBar} from "@angular/material";
 import {CalendarEditComponent} from "./calendar-edit/calendar-edit.component";
 import {Subject} from "rxjs";
 import {fadeInAnimation} from "../../route.animation";
+import {CalendarService} from "./calendar.service";
 
 @Component({
   selector: 'ms-calendar',
@@ -17,11 +18,12 @@ import {fadeInAnimation} from "../../route.animation";
   host: {
     "[@fadeInAnimation]": 'true'
   },
+  providers:[CalendarService],
   animations: [ fadeInAnimation ]
 })
 export class CalendarComponent implements OnInit {
 
-  view: string = 'month';
+  view: string = 'day';
 
   refresh: Subject<any> = new Subject();
 
@@ -40,44 +42,64 @@ export class CalendarComponent implements OnInit {
       //this.handleEvent('Deleted', event);
     }
   }];
-
+ 
   viewDate: Date = new Date();
+  allEvents:any[]=[];
+  isDataAvailable:boolean=false;
+  events: any[] =[];
+  
+  // [{
+  //   start: this.viewDate,
+  //   end: this.viewDate,
+  //   title: 'A 3 day event',
+  //   color: 'red',
+  //   actions: this.actions
+  // }, {
+  //   start: this.viewDate,
+  //   end: this.viewDate,
+  //   title: 'A draggable one day event',
+  //   color: 'yellow',
+  //   actions: this.actions,
+  //   draggable: true
+  // }, {
+  //   start: this.viewDate,
+  //   end: this.viewDate,
+  //   title: 'A long event that spans 2 months',
+  //   color: 'blue'
+  // }, {
+  //   start: this.viewDate,
+  //   end: this.viewDate,
+  //   title: 'A draggable and resizable event',
+  //   color: 'yellow',
+  //   actions: this.actions,
+  //   resizable: {
+  //     beforeStart: true,
+  //     afterEnd: true
+  //   },
+  //   draggable: true
+  // }];
+  getallEvents(){
+    this.calendarService.getAllEvents().subscribe(data=>{
+      //console.log(data);
+      this.isDataAvailable=true;
+      for(var i=0;i<data.description.length-1;i++)
+      this.allEvents.push({
+      id:data.description[i].id,
+      start: new Date(data.description[i].start_date),
+      end: new Date(data.description[i].end_date),
+      title: data.description[i].title,
+      color: 'red',
+      //actions: this.actions
+    }) });
+    this.events=this.allEvents;
+    
 
-  events: any[] = [{
-    start: moment().subtract(1, "days"),
-    end: moment().add(1, "days"),
-    title: 'A 3 day event',
-    color: 'red',
-    actions: this.actions
-  }, {
-    start: moment(),
-    end: moment(),
-    title: 'A draggable one day event',
-    color: 'yellow',
-    actions: this.actions,
-    draggable: true
-  }, {
-    start: moment().add(9, "days"),
-    end: moment().add(9, "days").add(2, "months"),
-    title: 'A long event that spans 2 months',
-    color: 'blue'
-  }, {
-    start: moment().add(2, "hours"),
-    end: moment(),
-    title: 'A draggable and resizable event',
-    color: 'yellow',
-    actions: this.actions,
-    resizable: {
-      beforeStart: true,
-      afterEnd: true
-    },
-    draggable: true
-  }];
-
+  }
+    
   handleEvent(action: string, event: CalendarEvent): void {
     let dialogRef = this.dialogRef.open(CalendarEditComponent);
     dialogRef.componentInstance.event = event;
-
+    console.log(event);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         event.title = result.title;
@@ -88,7 +110,7 @@ export class CalendarComponent implements OnInit {
   }
 
   dayClicked({date, events}: {date: Date, events: CalendarEvent[]}): void {
-
+     console.log(events);
     if (moment(this.viewDate).isSame(date, 'month')) {
       if (
         (moment(this.viewDate).isSame(date, 'day') && this.activeDayIsOpen === true) ||
@@ -109,13 +131,17 @@ export class CalendarComponent implements OnInit {
     //this.handleEvent('Dropped or resized', event);
     this.refresh.next();
   }
-
+  
+  
   constructor(
     private dialogRef: MdDialog,
-    private snackBar: MdSnackBar
+    private snackBar: MdSnackBar,
+    private calendarService:CalendarService
   ) { }
 
   ngOnInit() {
+    this.getallEvents();
+    this.view="month"
   }
 
 }

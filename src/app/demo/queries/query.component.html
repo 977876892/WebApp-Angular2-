@@ -1,102 +1,36 @@
-<!-- <div class="dashboard-container" fxLayout="column" fxLayoutAlign="start stretch"> -->
-  <!--<div fxLayout="row" fxLayoutAlign="center stretch" fxLayoutWrap="wrap">
-    <ms-bar-chart class="margin-bottom-sm"
-                  widgetTitle="Total Sales" subTitle="Latest 10 May, 10:00" bgColor="linear-gradient(60deg, #8C99E0, #6572B8)" textColor="#FFFFFF" chartColor="#FFFFFF" gain="16.3" comparedTo="% compared to last month"
-                  [data]="discreteBarDemoData"
-                  fxFlex="100%" fxFlex.md="49.5%" fxFlex.sm="100%" fxFlex.gt-md>
-    </ms-bar-chart>
-    <ms-line-chart class="margin-bottom-sm"
-                   widgetTitle="Visits" bgColor="linear-gradient(60deg, #4DD0E2, #4CA8BA)" textColor="#FFFFFF" chartColor="#FFFFFF" gain="42.5" comparedTo="% compared to last month"
-                   [data]="lineChartDemoData"
-                   fxFlex="100%" fxFlex.md="49.5%" fxFlex.sm="100%" fxFlex.gt-md fxFlexOffset.gt-sm="1%">
-    </ms-line-chart>
-    <ms-line-chart class="margin-top-md"
-                   widgetTitle="Total Clicks" subTitle="Latest 10 May, 10:00" bgColor="linear-gradient(60deg, #81C683, #62A864)" textColor="#FFFFFF" chartColor="#FFFFFF" interpolate="true" gain="-6.1" comparedTo="% compared to last month"
-                   [data]="lineChartInterpolatedDemoData"
-                   fxFlex="100%" fxFlex.sm="100%" fxFlex.gt-md fxFlexOffset.gt-md="1%">
-    </ms-line-chart>
-  </div>-->
-
-  <!-- <div class="margin-top" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutWrap="wrap">
-
-<div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
-      <div class="margin-top">
-        <ms-activity [feeds]="allBlogs"></ms-activity>
-      </div>
-    </div> -->
-    <!-- <div class="margin-top" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutWrap="wrap">
-
-        <div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
-                    <div class="margin-top">
-                      <ms-query-detail-activity [detailQueries]="detailQuery"></ms-query-detail-activity> 
-                      <ms-activity-queries [questions]="allQueries"></ms-activity-queries>
-                      
+<div class="dashboard-container" fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
+        <div class="margin-top">
+            <button (click)="exportToExcel($event)">Export</button>
+            <!-- <ms-activity-queries [questions]="allQueries"></ms-activity-queries> -->
+            <div class="activity-card mat-elevation-z2" *ngFor="let question of allQueries" style="margin-bottom: 14px;">
+                <div class="title-container" fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="column" [routerLink]="['/question-details', question.id]" *ngIf="question.state!=0">
+                        <span class="title">{{ question.title  }}</span>
+                        <!--<span class="extra">{{ subTitle }}</span>-->
                     </div>
-            
-        </div> -->
-     
-    <!--<div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
+                    <span fxFlex></span>
+                    <input type="button" name="" value="Delete" (click)="deletequery(question.id)">
+                    <!-- <button md-icon-button [mdMenuTriggerFor]="options">
+      <md-icon>more_vert</md-icon>
+    </button> -->
+                </div>
 
-      <ms-traffic-sources [chartData]="trafficSourcesDemoData"></ms-traffic-sources>
-
-   
-    </div>
-
-    <div class="margin-bottom-sm" fxLayout="column" fxFlex.gt-md fxFlex="100%" fxFlex.md="49.5%" fxFlexOffset.gt-sm="1%">
-      <ms-pie-chart [data]="pieChartDemoData" widgetTitle="Top 5 Categories" subTitle="Compared by sale share" textColor="#757575"></ms-pie-chart>
-
-      <div class="margin-top">
-        <md-card class="social-card">
-          <md-card-header>
-            <img md-card-avatar src="assets/img/avatars/3.png">
-            <md-card-subtitle>
-              Yesterday
-            </md-card-subtitle>
-            <md-card-title>Sophie Miller</md-card-title>
-          </md-card-header>
-          <img md-card-image src="assets/img/backgrounds/1.jpg">
-          <md-card-content>
-            <p>Piqued favour stairs it enable exeter as seeing. Remainder met improving but engrossed sincerity age.</p>
-          </md-card-content>
-          <md-divider></md-divider>
-          <md-card-actions>
-            <div fxLayout="row">
-              <button md-icon-button>
-                <md-icon>share</md-icon>
-              </button>
-              <button md-icon-button>
-                <md-icon>favorite</md-icon>
-              </button>
-              <span fxFlex></span>
-              <button md-button>
-                More Info
-              </button>
-              <button md-button>
-                Save as
-              </button>
+                <div class="content" [routerLink]="['/question-details', question.id]" *ngIf="question.state!=0">
+                    <md-nav-list>
+                        <a href="javascript:" md-list-item>
+                            <img md-list-avatar [src]="question.image" alt="...">
+                            <h3 md-line> {{ question.poster_name }} </h3>
+                            <p md-line>
+                                <!--<span class="title"> {{ feed.subject }} </span>-->
+                                <span class="extra"> {{ question.content }} </span>
+                            </p>
+                        </a>
+                    </md-nav-list>
+                </div>
             </div>
-          </md-card-actions>
-        </md-card>
-      </div>
-    </div>
 
-    <div class="margin-top-md" fxLayout="column" fxFlex.gt-md fxFlex="100%" fxFlex.sm="100%" fxFlexOffset.gt-md="1%">
 
-      <ms-recent-sales [sales]="recentSalesProductsDemoData" [chartData]="recentSalesDemoData"></ms-recent-sales>
-
-      <div class="margin-top">
-        <ms-google-maps-widget height="450px"></ms-google-maps-widget>
-      </div>
-    </div>-->
-
-  <!-- </div>
-
-</div> -->
-
-  <div class="dashboard-container" fxLayout="column" fxLayoutAlign="start stretch">
-  <div class="margin-bottom-sm" fxLayout="column" fxFlex="100%" fxFlex.md="49.5%" fxFlex.gt-md>
-                    <div class="margin-top">
-                      <ms-activity-queries [questions]="allQueries"></ms-activity-queries>
-                    </div>
         </div>
-  </div>
+    </div>
+</div>

@@ -27,14 +27,18 @@ import {ProfileComponent} from "./demo/profile/profile";
 import {DashboardComponent} from "./demo/dashboard/dashboard.component";
 import {DragAndDropComponent} from "./demo/drag-and-drop/drag-and-drop.component";
 import {InboxComponent} from "./demo/apps/inbox/inbox.component";
-import {CalendarComponent} from "../app/demo/calendar/calendar.component";
+//import {CalendarComponent} from "./demo/apps/calendar/calendar.component";
 import {ChatComponent} from "./demo/apps/chat/chat.component";
 import {AutocompleteComponent} from "./demo/components/autocomplete/autocomplete.component";
 import {QueryComponent} from "./demo/queries/query.component";
 import {QueryDetails} from "./demo/queries/query.detail.component";
 import {VisitComponent} from "./demo/visits/visit.component";
 import {VisitDetails} from "./demo/visits/visit.detail.component";
+import {CalendarComponent} from "../app/demo/calendar/calendar.component";
 import { ContentEditorComponent } from './demo/dashboard/editor/editor.component';
+import {GoogleAnalyticsComponent} from './demo/google_analytics/google_analytics';
+import {ComposeMessageComponent} from './demo/compose_message/compose_message.component'
+
 const routes: Routes = [
   {
     path: '',
@@ -64,7 +68,7 @@ const routes: Routes = [
        // pathMatch: 'full'
       },
       {
-          path: 'question-details/:id',
+          path: 'question-details/:id', 
           component: QueryDetails
           //pathMatch: 'full'
       },
@@ -73,7 +77,7 @@ const routes: Routes = [
         component:VisitComponent
       },
        {
-          path: 'visit-details',
+          path: 'visit-details', 
           component: VisitDetails
           //pathMatch: 'full'
       },
@@ -178,9 +182,21 @@ const routes: Routes = [
         component: ProfileComponent
       },
       {
-        path: 'content_editor',
+        path: 'content_editor/:id/:status',
         component: ContentEditorComponent
       },
+      {
+        path:'google_analytics',
+        component:GoogleAnalyticsComponent
+      },
+      {
+        path:'compose_message',
+        component:ComposeMessageComponent
+      }
+      // {
+      //   path: 'content_editor/:id/:status',
+      //   component: ContentEditorComponent
+      // },
     ]
   }
 ];

@@ -1,0 +1,134 @@
+<form #form="ngForm" style="width:100%;">
+    <div class="container" style="width:100%;height:500px;">
+        <image-upload [buttonCaption]="'Change Image!'" [dropBoxMessage]="'Drop your image here!'" [extensions]="['jpg','png','gif']" (onFileUploadFinish)="imageUploaded($event)" *ngIf="image!=''" [max]="1" name="imageUpload"></image-upload>
+        <image-upload [buttonCaption]="'Select Image!'" [dropBoxMessage]="'Drop your image here!'" [extensions]="['jpg','png','gif']" (onFileUploadFinish)="imageUploaded($event)" *ngIf="image==''" [max]="1" name="imageUpload"></image-upload>
+
+        <img src="{{image}}" style="height: 100px;border-radius: 48px;" name="image">
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-select placeholder="Select Doctor" style="width:100%;margin-top: 24px;" [(ngModel)]="res_id" name="selectDoctor">
+                <md-option value="{{res_id}}" name="item">{{doctor}}</md-option>
+            </md-select>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container class="example-full-width" style="width:100%;">
+                <input mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker1" placeholder="Start Date" [(ngModel)]="startdate" (ngModelChange)="dateChange(startdate)" name="startdate">
+                <!-- <button mdSuffix [mdDatepickerToggle]="picker1"></button> -->
+                <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+            </md-input-container>
+            <md-datepicker #picker1></md-datepicker>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+
+            <input type="button" placeholder="Time Slot" [(ngModel)]="timeslot" (click)="myModal.open()" name="timeslot" required>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="First Name" [(ngModel)]="firstname" name="firstname" required>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Last Name" [(ngModel)]="surname" name="surname" required>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+            <md-input-container fxFlex>
+                <input type="number" mdInput placeholder="Phone Number" [(ngModel)]="phone" name="phone" required>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Email" type="email" required [(ngModel)]="email" name="email" reqired>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+            <md-input-container fxFlex>
+                <input type="number" mdInput placeholder="Total Amount" [(ngModel)]="total_amount" name="totalamount">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+            <md-input-container fxFlex>
+                <input type="number" mdInput placeholder="Amount Deposit" [(ngModel)]="amount_deposit" name="amount_deposit">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row" style="margin-top:5px;">
+            <md-input-container fxFlex>
+                <input type="number" mdInput placeholder="Due Amount" [(ngModel)]="amount_due" name="amount_due">
+            </md-input-container>
+        </div>
+
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-select placeholder="Status" style="width:100%;" [(ngModel)]="status" name="status">
+                <md-option value="new" name="item">New</md-option>
+                <md-option value="accepted" name="item">Accepted</md-option>
+                <md-option value="Review" name="item">Review</md-option>
+                <md-option value="canceled" name="item">Cancelled</md-option>
+            </md-select>
+        </div>
+
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container class="example-full-width" style="width:100%;">
+                <input mdInput [min]="minDate" [max]="maxDate" [mdDatepicker]="picker" placeholder="Date Of Birth" [(ngModel)]="dob" name="dob">
+                <!-- <button mdSuffix [mdDatepickerToggle]="picker"></button>  -->
+                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+            </md-input-container>
+            <md-datepicker #picker></md-datepicker>
+        </div>
+
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Age" [(ngModel)]="age" name="age">
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-select placeholder="Select Gender" style="width:100%;" [(ngModel)]="gender" name="gender">
+                <md-option value="Male" name="items">Male</md-option>
+                <md-option value="Female" name="items">Female</md-option>
+            </md-select>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+
+            <md-input-container fxFlex>
+                <input mdInput placeholder="City" [(ngModel)]="city" name="city">
+                <span md-prefix><md-icon>location_city</md-icon></span>
+            </md-input-container>
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Area/Locality" [(ngModel)]="area" name="area">
+                <span md-prefix><md-icon>place</md-icon></span>
+            </md-input-container>
+
+        </div>
+        <div fxLayout="column" fxLayout.gt-md="row">
+            <md-input-container fxFlex>
+                <input mdInput placeholder="Add Remarks" [(ngModel)]="remarks" name="remarks">
+            </md-input-container>
+        </div>
+        <button md-button style="background-color:#33cccc;color:white;" (click)="update_visit()">Save</button>
+    </div>
+    <!-- <button md-button style="background-color:#33cccc;color:white;margin-bottom:10px;" (click)="update_visit()">Update</button> -->
+
+</form>
+<modal #myModal class="modal-backdrop" style="width:45%;">
+    <modal-header>
+        <h1>Timeslots</h1>
+    </modal-header>
+    <modal-content>
+        <!-- <div *ngFor="let dr of drTimeSlots" >
+              <div (click)="onTimeChange(dr);myModal.close()" [attr.disabled]="dr.booked!='Available' ? true : null"> {{dr.startendtime}}({{dr.booked}})</div>
+           </div> -->
+        <md-radio-group>
+            <md-radio-button *ngFor="let dr of drTimeSlots" ng-value="dr" style="margin-top:10px;">
+                <span *ngIf="dr.booked=='Booked'" style='color:#808080;'>{{dr.startendtime}}({{dr.booked}})</span>
+                <span *ngIf="dr.booked!='Booked'" style='color:#2ce4c4;' (click)="onTimeChange(dr);myModal.close();">{{dr.startendtime}}({{dr.booked}})</span>
+                <br>
+                <hr>
+            </md-radio-button>
+        </md-radio-group>
+    </modal-content>
+    <modal-footer>
+        <button class="btn btn-primary" (click)="myModal.close()">close</button>
+    </modal-footer>
+
+</modal>

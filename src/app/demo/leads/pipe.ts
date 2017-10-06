@@ -7,8 +7,8 @@ export class FilterPipe implements PipeTransform  {
     transform(pagedItems: any, search: any):any {
        if(search === undefined) return pagedItems;
        return pagedItems.filter(function(item:any){
-           return item.firstname.toString().toLowerCase().includes(search.toLowerCase());
-       });
+           return (item.email.toString().toLowerCase().includes(search.toLowerCase())||item.firstname.toString().toLowerCase().includes(search.toLowerCase()));
+       })
 
 
     }

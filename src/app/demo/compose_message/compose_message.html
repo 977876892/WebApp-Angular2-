@@ -1,0 +1,21 @@
+<br>
+<div style="width:40%;height:300px;">
+    <div align="center">
+        <b>Compose message</b>
+        <br>
+        <textarea style="width:70%;height:100px;margin-bottom:8px;" [(ngModel)]="textMsg" placeholder="Enter Some Text"></textarea>
+        <div style="border-top:1px solid black;width:70%;margin:0px auto;"></div>
+        <br>
+        <b>Send message to....</b>
+
+        <div>
+            <!-- <input type="text" placeholder="Groups" name="groups" style="width:60%;">
+            <button type="button" (click)="selectgroups()"><b>🔍</b></button> -->
+            <angular2-multiselect [data]="allTitles" [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+        </div>
+        <br>
+        <button>ION Server</button>
+        <button (click)="sendMsg(textMsg)">Send Message</button>
+    </div>
+
+</div>
